@@ -36,9 +36,32 @@
 import { useEffect, useState } from "react";
 
 function App() {
+  const [selectedId, setSelectedId] = useState(1);
   return (
     <div>
-      <Todo id={4} />
+      <button
+        onClick={function () {
+          setSelectedId(1);
+        }}
+      >
+        1
+      </button>
+      <button
+        onClick={function () {
+          setSelectedId(2);
+        }}
+      >
+        2
+      </button>
+      <button
+        onClick={function () {
+          setSelectedId(3);
+        }}
+      >
+        3
+      </button>
+
+      <Todo id={selectedId} />
     </div>
   );
 }
@@ -55,10 +78,11 @@ function Todo({ id }) {
       .catch((error) => {
         console.error("Error fetching todo:", error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>
+      Id: {id}
       <h1>{todo.title}</h1>
       <h4>{`Completed: ${todo.completed}`}</h4>
     </div>
